@@ -16,7 +16,25 @@ export const metadata: Metadata = {
   title: "ChaseX - Portfolio",
   description: "Welcome to my portfolio website.",
   icons: {
-    icon: "/wall.jpeg",
+    // This becomes: <link rel="icon" href="/wall.jpeg" type="image/jpeg" />
+    icon: [
+      {
+        url: "/wall.jpeg",
+        type: "image/jpeg",
+        sizes: "any", // allows any size
+      },
+    ],
+    // This becomes: <link rel="shortcut icon" href="/wall.jpeg" />
+    shortcut: "/wall.jpeg",
+    // For iOS / Apple devices:
+    apple: "/wall.jpeg",
+    // If you wanted to preload your icon for extra speed:
+    other: [
+      {
+        rel: "preload",
+        url: "/wall.jpeg",
+      },
+    ],
   },
 };
 
