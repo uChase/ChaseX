@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ChaseX - Portfolio",
+  title: "ChaseX",
   description: "Welcome to my portfolio website.",
   icons: {
     // This becomes: <link rel="icon" href="/wall.jpeg" type="image/jpeg" />

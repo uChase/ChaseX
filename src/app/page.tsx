@@ -156,11 +156,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ChaseX - Portfolio</title>
+        <title>ChaseX</title>
         <meta name="description" content="Welcome to my portfolio website." />
         <link rel="icon" href="/wall.jpeg" />
       </Head>
-      <div className="min-h-screen bg-black text-white flex flex-col">
+      <div className="min-h-screen bg-black text-white flex flex-col px-2 sm:px-4">
         {/* Navigation
         <motion.nav
           initial={{ y: -50, opacity: 0 }}
@@ -195,7 +195,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-6xl font-bold mb-4"
+            className="text-4xl sm:text-6xl font-bold mb-4"
           >
             Hello, I&apos;m{" "}
             <span className="text-cyan-400">Chase Hameetman</span>
@@ -204,16 +204,17 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="text-lg opacity-75 mb-8 max-w-xl"
+            className="text-base sm:text-lg opacity-75 mb-8 max-w-xl"
           >
             A developer creating sleek, modern web experiences with passion, ai,
-            and precision.
+            and precision. I am currently a student at{" "}
+            <span className="text-yellow-400 italic">Harvey Mudd College</span>
           </motion.p>
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="flex space-x-4"
+            className="flex flex-wrap justify-center gap-2 sm:space-x-4"
           >
             {[
               { name: "Resume", href: "/resume.pdf" },
@@ -228,7 +229,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="cursor-pointer px-6 py-2 border border-cyan-400 rounded-lg text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 transition"
+                  className="cursor-pointer px-4 py-2 sm:px-6 sm:py-2 border border-cyan-400 rounded-lg text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 transition"
                 >
                   {name}
                 </motion.button>
@@ -238,7 +239,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="cursor-pointer px-6 py-2 border border-red-500 rounded-lg text-red-500 bg-transparent hover:bg-red-500 hover:text-gray-900 transition shadow-[0_0_10px_rgba(255,0,0,0.7)]"
+                className="cursor-pointer px-4 py-2 sm:px-6 sm:py-2 border border-red-500 rounded-lg text-red-500 bg-transparent hover:bg-red-500 hover:text-gray-900 transition shadow-[0_0_10px_rgba(255,0,0,0.7)]"
               >
                 Doom
               </motion.button>
@@ -249,7 +250,7 @@ export default function Home() {
         {/* Projects Carousel Section */}
         <motion.section
           id="projects"
-          className="px-4 py-16"
+          className="px-2 sm:px-4 py-16"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.6 }}
