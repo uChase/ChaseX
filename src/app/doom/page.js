@@ -824,7 +824,7 @@ function Doom() {
     let normalizedToPlayerX = toPlayerX / distanceToPlayer;
     let normalizedToPlayerY = toPlayerY / distanceToPlayer;
 
-    const moveSpeed = 0.06 * 2; // This is the speed at which the enemy will move towards the player
+    const moveSpeed = 0.06; // Reduced enemy move speed
 
     // Calculate the next potential positions for the enemy
     let nextX = enemy.x + normalizedToPlayerX * moveSpeed;
@@ -870,8 +870,8 @@ function Doom() {
   };
 
   const updatePlayer = () => {
-    const moveSpeed = 0.07 * 2; // The speed at which the player moves
-    const strafeSpeed = 0.04 * 2; // The speed at which the player strafes (move sideways)
+    const moveSpeed = 0.07; // Reduced player move speed
+    const strafeSpeed = 0.04; // Reduced player strafe speed
 
     // Calculate the player's next position
     let nextX = playerPosition.current.x;
