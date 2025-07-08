@@ -250,7 +250,11 @@ export default function Home() {
         {/* Projects Carousel Section */}
         <motion.section
           id="projects"
-          className="px-2 sm:px-4 py-16"
+          className="w-screen px-0 py-16"
+          style={{
+            marginLeft: "calc(50% - 50vw)",
+            marginRight: "calc(50% - 50vw)",
+          }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.6 }}
