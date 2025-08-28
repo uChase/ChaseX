@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 function Doom() {
   const [playerAlive, setPlayerAlive] = useState(true);
   const [score, setScore] = useState(0);
-  let canvasRef = useRef(null);
+  let canvasRef = useRef({});
   let miniMapRef = useRef(null);
   const playerPosition = useRef({
     x: 6,
@@ -18,6 +18,20 @@ function Doom() {
     left: false,
     right: false,
   });
+
+  // Keep track of current window width for speed scaling
+  const widthRef = useRef(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  useEffect(() => {
+    // Update widthRef on mount and resize
+    widthRef.current = window.innerWidth;
+    const handleResize = () => {
+      widthRef.current = window.innerWidth;
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [isMoving, setIsMoving] = useState(false);
   const bobbingEffect = useRef(0);
@@ -335,9 +349,11 @@ function Doom() {
   const NUM_RAYS = 400;
   const FOV = Math.PI / 4; // Field of View
   const MAX_DISTANCE = 100;
-  const WALL_HEIGHT = typeof window !== "undefined" ? window.innerHeight : 0; // SSR safe
+  const getWallHeight = () =>
+    typeof window !== "undefined" ? window.innerHeight : 0; // SSR safe
   const TILE_LENGTH = 5; // Arbitrary value for tile length
-  const ENEMY_SIZE = typeof window !== "undefined" ? window.innerHeight : 0;
+  const getEnemySize = () =>
+    typeof window !== "undefined" ? window.innerHeight : 0;
   const map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 1, 0, 0, 0, 0, 1, 0, 1],
@@ -575,7 +591,9 @@ function Doom() {
     }
 
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -599,7 +617,7 @@ function Doom() {
         const enemy = enemies.current.find((e) => e.id === r.enemyId);
 
         if (enemy) {
-          const enemyHeight = ENEMY_SIZE / r.distance; // ENEMY_SIZE is a constant representing the enemy's size
+          const enemyHeight = getEnemySize() / r.distance;
           const enemyOffset = (canvas.height - enemyHeight) / 2;
 
           // Assuming enemy.texture is the image element with the loaded texture
@@ -648,7 +666,7 @@ function Doom() {
         }
       } else {
         // Calculate the lineHeight based on the distance
-        const lineHeight = WALL_HEIGHT / r.distance;
+        const lineHeight = getWallHeight() / r.distance;
 
         // Calculate the offset for the lineHeight
         const offset = (canvas.height - lineHeight) / 2;
@@ -714,7 +732,9 @@ function Doom() {
   const drawMiniMap = () => {
     if (playerPosition.current.alive === false) return;
     const miniMap = miniMapRef.current;
+    if (!miniMap) return;
     const ctx = miniMap.getContext("2d");
+    if (!ctx) return;
 
     // Clear the previous content
     ctx.clearRect(0, 0, miniMap.width, miniMap.height);
@@ -824,7 +844,7 @@ function Doom() {
     let normalizedToPlayerX = toPlayerX / distanceToPlayer;
     let normalizedToPlayerY = toPlayerY / distanceToPlayer;
 
-    const moveSpeed = 0.06; // Reduced enemy move speed
+    const moveSpeed = 0.06 * (widthRef.current / 1920);
 
     // Calculate the next potential positions for the enemy
     let nextX = enemy.x + normalizedToPlayerX * moveSpeed;
@@ -870,8 +890,8 @@ function Doom() {
   };
 
   const updatePlayer = () => {
-    const moveSpeed = 0.07; // Reduced player move speed
-    const strafeSpeed = 0.04; // Reduced player strafe speed
+    const moveSpeed = 0.07 * (widthRef.current / 1920);
+    const strafeSpeed = 0.04 * (widthRef.current / 1920);
 
     // Calculate the player's next position
     let nextX = playerPosition.current.x;
@@ -1153,7 +1173,9 @@ function DeathScreen({ onRespawn, score }) {
 
   useEffect(() => {
     const canvas = deathScreenRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     // Adjust canvas to window size
     canvas.width = window.innerWidth;

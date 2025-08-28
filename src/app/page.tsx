@@ -94,7 +94,7 @@ export default function Home() {
       description:
         "PAP Treatment Tracker App is a free app that helps patients with PAP manage their treatment and track their treatments.",
       techStack: ["React Native", "Apple Devices", "Firebase", "Expo"],
-      link: "https://apps.apple.com/us/app/pap-foundation/id6450156978?l=vi",
+      link: "https://apps.apple.com/us/app/pap-foundation/id6450156978",
       image: "/PAPLogo.webp",
     },
     {
@@ -114,15 +114,6 @@ export default function Home() {
       techStack: ["Python", "Pytorch"],
       link: "https://github.com/uChase/PokerBot/blob/main/WhitePaper.pdf",
       image: "/PokerLogo.png",
-    },
-    {
-      id: 4,
-      title: "Promise Locket",
-      description:
-        "Iphone app to track promises to onself and hold oneself accountable. Uses new iOS 17 features such as Live Activities and Widgets integrated as native modules.",
-      techStack: ["Swift", "UIKit", "React Native"],
-      link: "https://github.com/uChase/PromiseLocket",
-      image: "/PLlogo.png",
     },
   ];
 
@@ -160,35 +151,7 @@ export default function Home() {
         <meta name="description" content="Welcome to my portfolio website." />
         <link rel="icon" href="/wall.jpeg" />
       </Head>
-      <div className="min-h-screen bg-black text-white flex flex-col px-2 sm:px-4">
-        {/* Navigation
-        <motion.nav
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-full p-6 flex justify-end space-x-6 fixed top-0 bg-gray-900/80 backdrop-blur z-10"
-        >
-          {[
-            { name: "Resume", href: "https://example.com/resume.pdf" },
-            { name: "Email", href: "mailto:chasejh1@gmail.com" },
-            {
-              name: "LinkedIn",
-              href: "https://www.linkedin.com/in/chase-hameetman/",
-            },
-            { name: "GitHub", href: "https://github.com/uChase" },
-          ].map(({ name, href }) => (
-            <Link key={name} href={href}>
-              <motion.span
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="cursor-pointer hover:text-cyan-400"
-              >
-                {name}
-              </motion.span>
-            </Link>
-          ))}
-        </motion.nav> */}
-
+      <div className="min-h-screen bg-black text-white flex flex-col px-2 sm:px-4 overflow-x-hidden">
         {/* Hero Section */}
         <main className="flex-1 flex flex-col items-center justify-center text-center px-4 pt-15">
           <motion.h1
